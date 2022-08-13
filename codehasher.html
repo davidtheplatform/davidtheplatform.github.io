@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script>
+            function hashCode(str) {
+                let hash = 0;
+                for (let i = 0, len = str.length; i < len; i++) {
+                    let chr = str.charCodeAt(i);
+                    hash = (hash << 5) - hash + chr;
+                    hash |= 0; // Convert to 32bit integer
+                }
+                return hash;
+            }
+
+            function hash() {
+                var text = document.getElementById('text');
+                var result = document.getElementById('result');
+
+                result.innerText = "Hash: " + hashCode(text.value);
+            }
+        </script>
+    </head>
+    <body>
+        <p>Instructions: Paste your code below, then press the 'hash' button.</p>
+
+        <input id="text" type="text" width=40 height=50>
+        <button onclick="hash()">Hash</button>
+
+        <p id="result">Hash: </p>
+    </body>
+</html>
