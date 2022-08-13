@@ -17,14 +17,43 @@
 
                 result.innerText = "Hash: " + hashCode(text.value);
             }
+
+            function verify() {
+                var code = document.getElementById("verifyCode");
+                var hash = document.getElementById("verifyHash");
+                var verified = document.getElementById("verified");
+
+                if (hashCode(code.value) == hash.value) {
+                    verified.innerText = "The code and the hash match.";
+                    verified.style = "color: green;";
+                } else {
+                    verified.innerText = "The code and the hash do not match.";
+                    verified.style = "color: red;";
+                }
+            }
         </script>
     </head>
     <body>
         <p>Instructions: Paste your code below, then press the 'hash' button.</p>
+        <p>Note: Hashes are case and whitespace sensitive, so "abc", "Abc", and "abc " are all different.</p>
 
-        <input id="text" type="text" width=40 height=50>
+        <label for="text">Code: </label>
+        <input id="text" type="text">
+
         <button onclick="hash()">Hash</button>
 
         <p id="result">Hash: </p>
+
+        <p>To check code with a hash, pase the code in the first textbox and the hash in the second.</p>
+
+        <label for="verifyCode">Code</label>
+        <input type="text" id="verifyCode">
+
+        <label for="verifyHash">Hash:</label>
+        <input type="text" id="verifyHash">
+
+        <button id="verify">Verify</button>
+
+        <p id="verified"></p>
     </body>
 </html>
