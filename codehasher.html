@@ -35,7 +35,7 @@
     </head>
     <body>
         <p>Instructions: Paste your code below, then press the 'hash' button.</p>
-        <p>Note: Hashes are case and whitespace sensitive, so "abc", "Abc", and "abc " are all different.</p>
+        <p>Note: Hashes are case and whitespace sensitive, so "abc", "Abc", and "a b c" are all different.</p>
 
         <label for="text">Code: </label>
         <input id="text" type="text">
@@ -44,15 +44,21 @@
 
         <p id="result">Hash: </p>
 
+        <br>
+
         <p>To check code with a hash, pase the code in the first textbox and the hash in the second.</p>
 
-        <label for="verifyCode">Code</label>
+        <label for="verifyCode">Code: </label>
         <input type="text" id="verifyCode">
+
+        <br>
 
         <label for="verifyHash">Hash:</label>
         <input type="text" id="verifyHash">
 
-        <button id="verify">Verify</button>
+        <br>
+
+        <button id="verify" onclick="verify()">Verify</button>
 
         <p id="verified"></p>
     </body>
