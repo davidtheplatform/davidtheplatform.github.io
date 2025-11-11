@@ -1,0 +1,53 @@
+<html>
+  <body>
+    <p id="info"></p>
+    <script>
+      function requestGyroscopePermission() {
+  // Check if the DeviceOrientationEvent API and requestPermission are available
+  if (
+    typeof DeviceOrientationEvent !== "undefined" &&
+    typeof DeviceOrientationEvent.requestPermission === "function"
+  ) {
+    // Request permission
+    DeviceOrientationEvent.requestPermission()
+      .then((permissionState) => {
+      console.log(permissionState);
+        if (permissionState === "granted") {
+          // Permission granted, add event listener
+          window.addEventListener("deviceorientation", handleOrientation);
+        } else {
+          // Permission denied
+          console.error("Device orientation access denied");
+        }
+      })
+      .catch(console.error);
+  } else {
+    // For devices that don't need permission (e.g., Android, older iOS) or the API is not supported
+    window.addEventListener("deviceorientation", handleOrientation);
+    // You might want to inform the user or handle non-supported scenarios
+  }
+}
+
+function handleOrientation(event) {
+  // Use the gyroscope data here
+  const alpha = event.alpha; // Z-axis rotation (compass heading, generally unreliable without calibration)
+  const beta = event.beta;   // X-axis rotation (front-to-back tilt)
+  const gamma = event.gamma; // Y-axis rotation (left-to-right tilt)
+
+  // Example: log values to console
+  console.log(`Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`);
+
+  document.getElementById("info").innerText = `Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`;
+
+  // Update UI or application logic based on the values
+}
+
+// Attach the permission request to a user action (e.g., a button click)
+const button = document.createElement("button");
+button.textContent = "Start Gyroscope";
+button.addEventListener("click", requestGyroscopePermission);
+document.body.appendChild(button);
+
+    </script>
+  </body>
+</html>
